@@ -36,12 +36,13 @@ function CheckoutForm({ item }) {
                 price: item.price,
                 amount: calculateTotal(),
             };
-        
+    
+            console.log("Order data: ", postData);
+    
             const response = await createRecord('orders', postData);
+            console.log("Order response: ", response);
     
             if (response) {
-                toast.success('Order placed successfully!');
-                toast.info(`Order for ${postData.item} completed. You will receive a call from us within 24 hours. Thank you.`);
                 setFormData({
                     name: '',
                     county: '',
