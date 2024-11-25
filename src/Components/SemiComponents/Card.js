@@ -5,12 +5,12 @@ function Card(props) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const formatPrice = (price) => {
-    return `Ksh ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+    return `Tsh ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
   };
 
   const getHrefFromSrc = (src) => {
     const matches = src.match(/https:\/\/i\.ibb\.co\/([a-zA-Z0-9]+)\/.*/);
-    return matches ? `https://ibb.co/${matches[1]}` : '#'; // Return the modified URL or a fallback
+    return matches ? `https://ibb.co/${matches[1]}` : '#';
   };
 
   const href = getHrefFromSrc(props.image);
@@ -19,7 +19,14 @@ function Card(props) {
     <div className='card'>
       <div className='card-image-container'>
         {loadingImage && <div className='image-placeholder'>Loading...</div>}
-        <a href={href}>
+        <a
+          onClick={(e) => {
+            e.preventDefault(); 
+            if (props.onClick) {
+              props.onClick();
+            }
+          }}
+        >
           <img
             src={props.image}
             alt={props.title}

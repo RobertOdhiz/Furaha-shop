@@ -15,7 +15,7 @@ function HomePage() {
   const selectProductAndNavigate = (product) => {
     const related = findRelatedProducts(product, ProductsData);
 
-    navigate(`/products/${product.title}${product.uuid}`, { state: { selectedProduct: product, relatedProducts: related } });
+    navigate(`/products/${product.title}?id=${product.uuid}`, { state: { selectedProduct: product, relatedProducts: related } });
   };
 
   useEffect(() => {
