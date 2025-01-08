@@ -26,17 +26,17 @@ function SelectedProduct() {
 
   // Extract query parameters
   const queryParams = new URLSearchParams(location.search);
-  const uuid = queryParams.get('id'); // Extract `id` from query parameters
+  const uuid = queryParams.get('id');
 
   const { selectedProduct: stateProduct, relatedProducts: stateRelatedProducts } = location.state || {};
   const [selectedProduct, setSelectedProduct] = useState(stateProduct || { title: '', description: '', price: 0, imageURL: '' });
   const [relatedProducts, setRelatedProducts] = useState(stateRelatedProducts || []);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [error, setError] = useState(null); // Track errors
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Scroll to top when navigating to this page
-    window.scrollTo(0, 0); // Scrolls the window to the top
+    window.scrollTo(0, 0);
 
     // Fetch product if not passed via state
     const fetchProduct = async () => {
@@ -49,7 +49,7 @@ function SelectedProduct() {
         // Fetch related products
         const related = findRelatedProducts(product);
         setRelatedProducts(related || []);
-        setError(null); // Clear any previous errors
+        setError(null);
       } catch (err) {
         console.error(err.message);
         setError(err.message);
@@ -65,13 +65,17 @@ function SelectedProduct() {
   }, [stateProduct, uuid, navigate]);
 
   const formatPrice = (price) => {
-    return `Ksh ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+    return `Tsh ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
   };
 
   const selectProductAndNavigate = (product) => {
-    navigate(`/products/${product.title}?id=${product.uuid}`, {
-      state: { selectedProduct: product, relatedProducts: findRelatedProducts(product) },
-    });
+    // navigate(`/products/${product.title}?id=${product.uuid}`, {
+    //   state: { selectedProduct: product, relatedProducts: findRelatedProducts(product) },
+    // });
+    setSelectedProduct(product);
+    const related = findRelatedProducts(product);
+    setRelatedProducts(related || []);
+    window.scrollTo(0, 0);
   };
 
   const getHrefFromSrc = (src) => {
@@ -102,11 +106,11 @@ function SelectedProduct() {
         <meta name="description" content={selectedProduct.description || 'Product details page for Furaha Shop.'} />
         <meta property="og:title" content={selectedProduct.title} />
         <meta property="og:description" content={selectedProduct.description || 'Product details page for Furaha Shop.'} />
-        <meta property="og:image" content={selectedProduct.imageURL || ''} />
+        <meta property="og:image" content={selectedProduct.imageURL || '/default-image.jpg'} />
         <meta property="og:url" content={window.location.href} />
         <meta name="twitter:title" content={selectedProduct.title} />
         <meta name="twitter:description" content={selectedProduct.description || 'Product details page for Furaha Shop.'} />
-        <meta name="twitter:image" content={selectedProduct.imageURL || ''} />
+        <meta name="twitter:image" content={selectedProduct.imageURL || '/default-image.jpg'} />
       </Helmet>
 
       <Navbar />
