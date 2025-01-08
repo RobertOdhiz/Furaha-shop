@@ -19,7 +19,7 @@ function HomePage() {
   };
 
   useEffect(() => {
-    document.title = 'Furaha Shop | Home - Discover best Health options';
+    document.title = 'Multi Store | Home - Discover best Health options';
     const fetchData = async () => {
       try {
         const dataFromSheets = await getDataFromSheets();
@@ -52,7 +52,7 @@ function HomePage() {
           <img src={TopPage2} alt='' />
         </div>
         <div className='top-content'>
-          <h1>Furaha Shop</h1>
+          <h1>Multi-Store</h1>
           <p>Your one-stop online shop for Healthy Products with Free Delivery Countrywide</p>
           <button className='btn' onClick={() => navigate('/catalogue')}>
             <span>Shop Now</span>
@@ -69,7 +69,7 @@ function HomePage() {
               key={key}
               title={item.title}
               // description={item.des}
-              price={item.price}
+              price={item.price/8}
               image={item.imageURL}
               onClick={() => selectProductAndNavigate(item)}
             />

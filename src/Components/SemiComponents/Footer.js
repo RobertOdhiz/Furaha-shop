@@ -7,12 +7,11 @@ export default function Footer() {
   const handleSubscribe = (e) => {
     e.preventDefault();
     
-    // Use the 'mailto' protocol to open the user's default email client
     const subject = encodeURIComponent('Newsletter Subscription');
     const body = encodeURIComponent(`A new user has subscribed with the email: ${email}`);
     window.location.href = `mailto:joacimodhiambo@gmail.com?subject=${subject}&body=${body}`;
 
-    setEmail(''); // Clear the input after sending
+    setEmail('');
   };
 
   return (

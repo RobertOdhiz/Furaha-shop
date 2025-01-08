@@ -40,7 +40,7 @@ function Navbar() {
 
   return (
     <nav className='navbar'>
-      <h3 className='logo' onClick={() => navigate('/')}>Furaha Shop</h3>
+      <h3 className='logo' onClick={() => navigate('/')}>Multi-Store</h3>
       <div className={`sidenav ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <li onClick={() => navigate('/catalogue')}>Catalogue</li>

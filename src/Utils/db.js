@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://furaha-be.vercel.app/api';
+const BASE_URL = 'https://maxhealth-be.vercel.app/api';
 
 const request = async (method, endpoint, body = null) => {
   const config = {

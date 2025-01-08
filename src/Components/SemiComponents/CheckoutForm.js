@@ -33,7 +33,7 @@ function CheckoutForm({ item }) {
             const postData = {
                 ...formData,
                 item: item.uuid,
-                price: item.price,
+                price: Math.round(item.price/8),
                 amount: calculateTotal(),
             };
     
@@ -54,7 +54,7 @@ function CheckoutForm({ item }) {
                 });
                 
                 // Navigate to SuccessPage and pass the item data
-                navigate('/success', { state: { item: postData, itemName: item.title, price: item.price } });
+                navigate('/success', { state: { item: postData, itemName: item.title, price: Math.round(item.price/8) } });
             } else {
                 toast.error('Failed to place order. Please try again.');
             }
@@ -80,7 +80,7 @@ function CheckoutForm({ item }) {
     };
 
     const calculateTotal = () => {
-        const price = Number(item.price);
+        const price = Number(Math.round(item.price/8));
         const quantity = formData.quantity;
         let total = 0;
       
@@ -162,7 +162,7 @@ function CheckoutForm({ item }) {
                 <h2>Order Summary</h2>
                 <div className='order-item'>
                     <p>SubTotal</p>
-                    <p>{item.price}</p>
+                    <p>{Math.round(item.price/8)}</p>
                 </div>
                 <div className='order-item'>
                     <label htmlFor='quantity'>Quantity</label>

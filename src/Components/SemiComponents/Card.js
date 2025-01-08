@@ -5,7 +5,7 @@ function Card(props) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const formatPrice = (price) => {
-    return `Tsh ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+    return `GH₵ ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
   };
 
   const getHrefFromSrc = (src) => {
@@ -38,7 +38,7 @@ function Card(props) {
       <div className='card-text' onClick={props.onClick}>
         <h5>{props.title}</h5>
         {/* <p>{props.description}</p> */}
-        <p className='card-price'>{formatPrice(props.price)}</p>
+        <p className='card-price'>{formatPrice(Math.round(props.price/8))}</p>
       </div>
     </div>
   );

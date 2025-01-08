@@ -24,10 +24,10 @@ function Products() {
       try {
         const dataFromSheets = await getDataFromSheets();
         setAllProducts(dataFromSheets);
-        setLoading(false); // Data has been fetched
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false); // Even if there's an error, stop loading
+        setLoading(false);
       }
     };
 
@@ -54,7 +54,7 @@ function Products() {
       <Helmet>
         <title>All Products</title>
         <meta name="description" content="Browse through our wide range of amazing products available for purchase." />
-        <meta property="og:title" content="All Products | Furaha Shop" />
+        <meta property="og:title" content="All Products | Multi Store" />
         <meta property="og:description" content="Browse through our wide range of amazing products available for purchase." />
         <meta property="og:image" content={defaultImage} />
         <meta property="og:url" content={window.location.href} />
